@@ -1,6 +1,7 @@
 # hoonji-backend
 
 
+---
 
 ## ERD 설계
-![image](https://user-images.githubusercontent.com/100108789/156322656-467954f2-5ca7-439f-9d54-a0bc94bc6303.png)
+![image](https://user-images.githubusercontent.com/100108789/156324218-004d4429-1eb9-4d43-8134-a74e2c370113.png)
