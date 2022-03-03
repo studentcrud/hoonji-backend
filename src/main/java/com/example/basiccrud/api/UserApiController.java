@@ -3,6 +3,7 @@ package com.example.basiccrud.api;
 import com.example.basiccrud.dto.JwtResponse;
 import com.example.basiccrud.dto.SignupRequestDto;
 import com.example.basiccrud.dto.UserDto;
+import com.example.basiccrud.repository.UserRepository;
 import com.example.basiccrud.service.UserService;
 import com.example.basiccrud.utills.JwtTokenUtil;
 import lombok.RequiredArgsConstructor;
@@ -45,7 +46,7 @@ public class UserApiController {
         authenticate(userDto.getUsername(), userDto.getPassword());
         final UserDetails userDetails = userDetailsService.loadUserByUsername(userDto.getUsername());
         final String token = jwtTokenUtil.generateToken(userDetails);
-        return ResponseEntity.ok(new JwtResponse(token, userDetails.getUsername()));
+        return ResponseEntity.ok("회원가입 완료");
     }
 
 

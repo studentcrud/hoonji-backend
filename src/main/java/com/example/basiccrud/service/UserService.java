@@ -1,10 +1,11 @@
 package com.example.basiccrud.service;
 
 
+import com.example.basiccrud.domain.User;
 import com.example.basiccrud.dto.SignupRequestDto;
 import com.example.basiccrud.repository.UserRepository;
 import lombok.RequiredArgsConstructor;
-import org.springframework.security.core.userdetails.User;
+
 import org.springframework.security.crypto.password.PasswordEncoder;
 import org.springframework.stereotype.Service;
 
@@ -31,7 +32,6 @@ public class UserService {
         User user = new User(username, password);
         userRepository.save(user);
 
-
-
-      return user;
+        return user;
     }
+}
