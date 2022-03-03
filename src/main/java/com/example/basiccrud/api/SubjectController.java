@@ -3,6 +3,7 @@ package com.example.basiccrud.api;
 import com.example.basiccrud.dto.SubjectRequestDto;
 import com.example.basiccrud.service.SubjectService;
 import com.example.basiccrud.utills.PagingResult;
+import com.example.basiccrud.utills.Wrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -30,6 +31,12 @@ public class SubjectController {
     @PutMapping("/api/subjects/{id}")
     public String putSubject(@PathVariable Long id,@RequestBody SubjectRequestDto subjectRequestDto){
         return subjectService.updateSubject(id,subjectRequestDto);
+    }
+
+    //과목 삭제
+    @DeleteMapping("/api/subjects")
+    public void deleteSubject(@RequestBody Wrapper subjects){
+        subjectService.deleteSubject(subjects);
     }
 
 
