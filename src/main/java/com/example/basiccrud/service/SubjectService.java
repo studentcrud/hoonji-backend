@@ -3,10 +3,14 @@ package com.example.basiccrud.service;
 import com.example.basiccrud.domain.Subject;
 import com.example.basiccrud.dto.SubjectRequestDto;
 import com.example.basiccrud.repository.SubjectRepository;
+import com.example.basiccrud.utills.PagingResult;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
-
+import org.springframework.data.domain.Page;
+import org.springframework.data.domain.PageRequest;
+import org.springframework.data.domain.Pageable;
 import javax.transaction.Transactional;
+import java.util.List;
 import java.util.Optional;
 
 @RequiredArgsConstructor
@@ -14,6 +18,7 @@ import java.util.Optional;
 public class SubjectService {
 
     private  final SubjectRepository subjectRepository;
+    private static final int BLOCK_PAGE_NUM_COUNT = 8;
 
     //과목 저장 및 중복 저장 x
     @Transactional
@@ -28,9 +33,20 @@ public class SubjectService {
             subjectRepository.save(subject);
 
         }
+    }
 
+    //과목 조회 페이징
+    public PagingResult getSubjects(int curPage){
+        Pageable pageable = PageRequest.of(curPage-1,BLOCK_PAGE_NUM_COUNT);
+        Page<Subject> subjects = subjectRepository.findAllByOrderByCreatedAtDesc(pageable);
 
+        List<Subject> subjectList = subjects.getContent();
+        return new PagingResult(subjectList, subjects.getTotalPages());
 
     }
+
+
+
+
 
 }
