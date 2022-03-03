@@ -4,6 +4,7 @@ import com.example.basiccrud.domain.Subject;
 import com.example.basiccrud.dto.SubjectRequestDto;
 import com.example.basiccrud.repository.SubjectRepository;
 import com.example.basiccrud.utills.PagingResult;
+import com.example.basiccrud.utills.Wrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
 import org.springframework.data.domain.Page;
@@ -52,6 +53,16 @@ public class SubjectService {
         );
         subject.update(subjectRequestDto);
         return "success";
+    }
+    
+    //과목 삭제
+    @Transactional
+    public void deleteSubject(Wrapper subjects){
+        List<String> test = subjects.getSubjects();
+        for(String s: test){
+            long id = Long.parseLong(s);
+            subjectRepository.deleteById(id);
+        }
     }
 
 

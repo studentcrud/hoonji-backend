@@ -31,6 +31,7 @@ public class UserApiController {
     private final UserService userService;
 
 
+    // 유저 로그인
     @PostMapping(value = "/users/login")
     public ResponseEntity<?> createAuthenticationToken(@RequestBody UserDto userDto) throws Exception {
         authenticate(userDto.getUsername(), userDto.getPassword());
@@ -39,7 +40,7 @@ public class UserApiController {
         return ResponseEntity.ok(new JwtResponse(token, userDetails.getUsername()));
     }
 
-
+    // 유저 회원가입
     @PostMapping(value = "/users/signup")
     public ResponseEntity<?> createUser(@RequestBody SignupRequestDto userDto) throws Exception {
         userService.registerUser(userDto);
