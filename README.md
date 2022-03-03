@@ -4,4 +4,4 @@
 ---
 
 ## ERD 설계
-![image](https://user-images.githubusercontent.com/100108789/156324218-004d4429-1eb9-4d43-8134-a74e2c370113.png)
+![image](https://user-images.githubusercontent.com/100108789/156519553-b7395989-207e-45c9-b8d6-efc5dec34622.png)
