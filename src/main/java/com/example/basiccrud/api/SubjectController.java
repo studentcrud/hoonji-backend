@@ -16,14 +16,20 @@ public class SubjectController {
 
     //과목 저장
     @PostMapping("/api/subjects")
-    public void setSubjectInfo(@RequestBody SubjectRequestDto subjectRequestDto){
+    public void postSubject(@RequestBody SubjectRequestDto subjectRequestDto){
         subjectService.setSubject(subjectRequestDto);
     }
 
     //과목 조회
     @GetMapping("/api/subjects/{curPage}")
     public PagingResult getSubject(@PathVariable Integer curPage){
-        return subjectService.getSubjects(curPage);
+        return subjectService.getSubject(curPage);
+    }
+
+    //과목 변경
+    @PutMapping("/api/subjects/{id}")
+    public String putSubject(@PathVariable Long id,@RequestBody SubjectRequestDto subjectRequestDto){
+        return subjectService.updateSubject(id,subjectRequestDto);
     }
 
 

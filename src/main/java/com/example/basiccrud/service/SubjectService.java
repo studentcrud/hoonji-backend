@@ -36,7 +36,7 @@ public class SubjectService {
     }
 
     //과목 조회 페이징
-    public PagingResult getSubjects(int curPage){
+    public PagingResult getSubject(int curPage){
         Pageable pageable = PageRequest.of(curPage-1,BLOCK_PAGE_NUM_COUNT);
         Page<Subject> subjects = subjectRepository.findAllByOrderByCreatedAtDesc(pageable);
 
@@ -44,6 +44,16 @@ public class SubjectService {
         return new PagingResult(subjectList, subjects.getTotalPages());
 
     }
+    //과목 변경
+    @Transactional
+    public String updateSubject(Long id, SubjectRequestDto subjectRequestDto){
+        Subject subject = subjectRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("해당 아이디가 존재하지 않습니다")
+        );
+        subject.update(subjectRequestDto);
+        return "success";
+    }
+
 
 
 
