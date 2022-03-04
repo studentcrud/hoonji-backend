@@ -29,6 +29,7 @@ public class Subject extends TimeStamped{
     public Subject(String name){
         this.name = name;
     }
+
     public Subject update(SubjectRequestDto  subjectRequestDto){
         this.name = subjectRequestDto.getName();
 
