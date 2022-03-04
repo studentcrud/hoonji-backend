@@ -11,4 +11,6 @@ import java.util.List;
 public class Wrapper {
     List<String> subjects;
 
+    List<String> professors;
+
 }
