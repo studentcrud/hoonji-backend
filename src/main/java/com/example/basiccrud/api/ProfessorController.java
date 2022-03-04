@@ -24,11 +24,13 @@ public class ProfessorController {
         return professorService.getProfessor(curPage);
     }
 
+
     // 교수 목록 변경
     @PutMapping("/api/professors/{id}")
     public String putProfessor(@PathVariable Long id, @RequestBody ProfessorRequestDto professorRequestDto){
         return professorService.updateProfessor(id, professorRequestDto);
     }
+
 
 
 }
