@@ -17,10 +17,20 @@ public class ProfessorController {
     public void postProfessor(@RequestBody ProfessorRequestDto professorDto){
         professorService.setProfessor(professorDto);
     }
+
     // 교수 목록 조회
     @GetMapping("/api/professors/{curPage}")
     public PagingResult getProfessor(@PathVariable Integer curPage){
         return professorService.getProfessor(curPage);
     }
+
+
+    // 교수 목록 변경
+    @PutMapping("/api/professors/{id}")
+    public String putProfessor(@PathVariable Long id, @RequestBody ProfessorRequestDto professorRequestDto){
+        return professorService.updateProfessor(id, professorRequestDto);
+    }
+
+
 
 }

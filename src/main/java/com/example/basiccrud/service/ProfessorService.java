@@ -36,6 +36,19 @@ public class ProfessorService {
         return new PagingResult(professorList,professors.getTotalPages());
     }
 
+    // 교수 목록 변경
+    @Transactional
+    public String updateProfessor(Long id, ProfessorRequestDto professorRequestDto){
+        Professor professor = professorRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("해당 아이다가 존재하지 않습니다")
+        );
+        professor.update(professorRequestDto);
+        return "success";
+    }
+
+
+
+
 
 
 
