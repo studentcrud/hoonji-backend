@@ -2,10 +2,9 @@ package com.example.basiccrud.api;
 
 import com.example.basiccrud.dto.ProfessorRequestDto;
 import com.example.basiccrud.service.ProfessorService;
+import com.example.basiccrud.utills.PagingResult;
 import lombok.RequiredArgsConstructor;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.RequestBody;
-import org.springframework.web.bind.annotation.RestController;
+import org.springframework.web.bind.annotation.*;
 
 
 @RequiredArgsConstructor
@@ -15,7 +14,13 @@ public class ProfessorController {
 
     // 교수 저장
     @PostMapping("/api/professors")
-    public void PostProfessor(@RequestBody ProfessorRequestDto professorDto){
+    public void postProfessor(@RequestBody ProfessorRequestDto professorDto){
         professorService.setProfessor(professorDto);
     }
+    // 교수 목록 조회
+    @GetMapping("/api/professors/{curPage}")
+    public PagingResult getProfessor(@PathVariable Integer curPage){
+        return professorService.getProfessor(curPage);
+    }
+
 }
