@@ -3,6 +3,7 @@ package com.example.basiccrud.api;
 import com.example.basiccrud.dto.ProfessorRequestDto;
 import com.example.basiccrud.service.ProfessorService;
 import com.example.basiccrud.utills.PagingResult;
+import com.example.basiccrud.utills.Wrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.web.bind.annotation.*;
 
@@ -31,6 +32,12 @@ public class ProfessorController {
         return professorService.updateProfessor(id, professorRequestDto);
     }
 
+    // 교수 목록 삭제
+    @DeleteMapping("/api/professors")
+    public void deleteProfessor(@RequestBody Wrapper professor){
+        professorService.deleteProfessor(professor);
+
+    }
 
 
 }

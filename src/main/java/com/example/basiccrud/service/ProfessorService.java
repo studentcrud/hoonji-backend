@@ -4,6 +4,7 @@ import com.example.basiccrud.domain.Professor;
 import com.example.basiccrud.dto.ProfessorRequestDto;
 import com.example.basiccrud.repository.ProfessorRepository;
 import com.example.basiccrud.utills.PagingResult;
+import com.example.basiccrud.utills.Wrapper;
 import lombok.RequiredArgsConstructor;
 import org.springframework.data.domain.Page;
 import org.springframework.data.domain.PageRequest;
@@ -46,6 +47,20 @@ public class ProfessorService {
         return "success";
     }
 
+    // 교수 목록 선택택삭제
+    @Transactional
+    public void deleteProfessor(Wrapper professors){
+
+        List<String> test = professors.getProfessors();
+
+        for (String s : test
+        ) {
+            long id = Long.parseLong(s);
+
+            professorRepository.deleteById(id);
+
+        }
+    }
 
 
 
