@@ -33,4 +33,12 @@ public class Professor extends TimeStamped {
 
     }
 
+    public Professor update(ProfessorRequestDto professorRequestDto){
+        this.name = professorRequestDto.getName();
+        this.age = professorRequestDto.getAge();
+
+        return this;
+    }
+
+
 }
