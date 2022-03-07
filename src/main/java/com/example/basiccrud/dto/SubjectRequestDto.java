@@ -7,6 +7,6 @@ import lombok.Setter;
 @Setter
 public class SubjectRequestDto {
 
-    private String name;
+    private String subjectName;
 
 }

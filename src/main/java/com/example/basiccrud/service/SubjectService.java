@@ -25,8 +25,8 @@ public class SubjectService {
     @Transactional
     public void setSubject(SubjectRequestDto subjectRequestDto){
 
-        String sub = subjectRequestDto.getName();
-        Optional<Subject> found = subjectRepository.findByName(sub);
+        String sub = subjectRequestDto.getSubjectName();
+        Optional<Subject> found = subjectRepository.findBySubjectName(sub);
         if(found.isPresent()){
             throw new IllegalArgumentException("이미있는 학과명 입니다");
         } else {
