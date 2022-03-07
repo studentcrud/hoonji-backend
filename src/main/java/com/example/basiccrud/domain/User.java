@@ -27,6 +27,11 @@ public class User extends TimeStamped{
     @Column(nullable = false, length = 200)
     private String password;
 
+    // 유저 역할
+    @Column(nullable = true)
+    private boolean role;
+
+
 
     public User(String username, String password) {
 
