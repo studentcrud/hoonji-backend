@@ -20,18 +20,18 @@ public class Subject extends TimeStamped{
     private Long id;
 
     @Column(nullable = false)
-    private String name;
+    private String subjectName;
 
     public Subject(SubjectRequestDto subjectRequestDto){
-        this.name = subjectRequestDto.getName();
+        this.subjectName = subjectRequestDto.getSubjectName();
     }
 
-    public Subject(String name){
-        this.name = name;
+    public Subject(String subjectName){
+        this.subjectName = subjectName;
     }
 
     public Subject update(SubjectRequestDto  subjectRequestDto){
-        this.name = subjectRequestDto.getName();
+        this.subjectName = subjectRequestDto.getSubjectName();
 
         return this;
     }

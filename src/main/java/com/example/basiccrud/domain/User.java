@@ -17,19 +17,20 @@ public class User extends TimeStamped{
     // ID가 자동으로 생성 및 증가합니다.
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
+    @Column(name = "user_id")
     private Long id;
 
     // 유저이름
-    @Column(nullable = false, length = 200)
+    @Column(nullable = false)
     private String username;
 
     // 패스워드
-    @Column(nullable = false, length = 200)
+    @Column(nullable = false)
     private String password;
 
     // 유저 역할
     @Column(nullable = true)
-    private boolean role;
+    private boolean status;
 
 
 
