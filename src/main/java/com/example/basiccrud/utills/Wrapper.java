@@ -10,7 +10,7 @@ import java.util.List;
 @Setter
 public class Wrapper {
     List<String> subjects;
-
+    List<String> students;
     List<String> professors;
 
 }

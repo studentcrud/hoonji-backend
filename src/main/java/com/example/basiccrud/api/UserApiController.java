@@ -40,6 +40,12 @@ public class UserApiController {
         return ResponseEntity.ok(new JwtResponse(token, userDetails.getUsername()));
     }
 
+    // 유저 아이디 중복체크
+    @GetMapping(value = "/users/check")
+    public String checkUser(@RequestBody UserDto userDto){
+        return userService.checkUser(userDto);
+    }
+
     // 유저 회원가입
     @PostMapping(value = "/users/signup")
     public ResponseEntity<?> createUser(@RequestBody SignupRequestDto userDto) throws Exception {

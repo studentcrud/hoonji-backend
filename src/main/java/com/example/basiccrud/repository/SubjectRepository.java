@@ -13,7 +13,7 @@ import java.util.Optional;
 public interface SubjectRepository extends JpaRepository<Subject,Long> {
 
 
-    Optional<Subject> findBySubjectName(String name);
+    Optional<Subject> findBySubjectName(String subjectName);
 
     Page<Subject> findAllByOrderByCreatedAtDesc(Pageable pageable);
 

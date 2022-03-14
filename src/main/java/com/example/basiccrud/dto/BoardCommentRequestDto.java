@@ -7,12 +7,11 @@ import lombok.Setter;
 
 @Getter
 @Setter
-public class SubjectRequestDto {
+@NoArgsConstructor
+@AllArgsConstructor
+public class BoardCommentRequestDto {
 
-    private String subjectName;
-
-
-    public SubjectRequestDto(String subjectName) {
-        this.subjectName = subjectName;
-    }
+    private Long boardId;
+    private Long commentId;
+    private String content;
 }
