@@ -1,5 +1,6 @@
 package com.example.basiccrud.api;
 
+import com.example.basiccrud.domain.Professor;
 import com.example.basiccrud.dto.ProfessorRequestDto;
 import com.example.basiccrud.dto.responseDto.ProfessorResponseDto;
 import com.example.basiccrud.repository.ProfessorRepository;
@@ -36,6 +37,11 @@ public class ProfessorController {
     @RequestMapping(value = "/professors",method=RequestMethod.GET)
     public List<ProfessorResponseDto> readSubjects(){
         return professorService.getPro();
+    }
+
+    @GetMapping("/professor/{id}")
+    public Professor oneProfessor(@PathVariable Long id){
+        return professorService.oneProfessor(id);
     }
 
 

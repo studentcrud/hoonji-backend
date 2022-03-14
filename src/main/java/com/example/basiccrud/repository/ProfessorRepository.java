@@ -15,7 +15,7 @@ import java.util.Optional;
 public interface ProfessorRepository extends JpaRepository<Professor, Long> {
 
     Page<Professor> findAllByOrderByCreatedAtDesc(Pageable pageable);
-
+    Page<Professor> findAllByOrderByCreatedAtDescSubject(Pageable pageable, String subject);
 
     Optional<Professor> findByProfessorName(String professorName);
 

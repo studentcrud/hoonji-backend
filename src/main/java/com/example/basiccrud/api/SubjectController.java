@@ -4,6 +4,7 @@ import com.example.basiccrud.domain.Subject;
 import com.example.basiccrud.dto.SubjectRequestDto;
 import com.example.basiccrud.repository.SubjectRepository;
 import com.example.basiccrud.service.SubjectService;
+
 import com.example.basiccrud.utills.PagingResult;
 import com.example.basiccrud.utills.Wrapper;
 import lombok.RequiredArgsConstructor;
@@ -23,7 +24,7 @@ public class SubjectController {
 
     //과목 저장
     @PostMapping("/subjects")
-    public void createSubject(@RequestBody SubjectRequestDto subjectRequestDto){
+    public void createSubject(@RequestBody SubjectRequestDto subjectRequestDto)  {
         subjectService.setSubject(subjectRequestDto);
     }
 
@@ -33,11 +34,25 @@ public class SubjectController {
         return subjectService.getSubject(curPage);
     }
 
+
+    //과목 조회 개별
+    @GetMapping("/subject/{id}")
+    public Subject oneSubject(@PathVariable Long id){
+        return subjectService.oneSubject(id);
+    }
+
+
     //과목 조회 전체
     @RequestMapping(value = "/subjects",method=RequestMethod.GET)
     public List<Subject> readSubjects(){
         return subjectRepository.findAll();
     }
+
+
+//    @GetMapping("/subjects/{id}")
+//    public Subject getSubject(@PathVariable Long idx) {
+//        return subjectService.getSubject(idx);
+//    }
 
     //과목 변경
     @PutMapping("/subjects/{id}")

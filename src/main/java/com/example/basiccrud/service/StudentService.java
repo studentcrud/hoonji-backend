@@ -5,6 +5,7 @@ import com.example.basiccrud.domain.Professor;
 import com.example.basiccrud.domain.Student;
 import com.example.basiccrud.domain.Subject;
 import com.example.basiccrud.dto.StudentRequestDto;
+import com.example.basiccrud.dto.responseDto.StudentResponseDto;
 import com.example.basiccrud.repository.ProfessorRepository;
 import com.example.basiccrud.repository.StudentRepository;
 import com.example.basiccrud.repository.SubjectRepository;
@@ -18,6 +19,7 @@ import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
 
+import java.util.LinkedList;
 import java.util.List;
 
 @RequiredArgsConstructor
@@ -30,7 +32,8 @@ public class StudentService {
     private static final int BLOCK_PAGE_NUM_COUNT = 5;
 
     @Transactional
-    public void setStudentInfo(StudentRequestDto studentDto){
+    public Student setStudentInfo(StudentRequestDto studentDto){
+
 
         Subject s = subjectRepository.findBySubjectName(studentDto.getSubjectName()).orElseThrow(
                 ()-> new NullPointerException("과목이 없습니다")
@@ -40,19 +43,28 @@ public class StudentService {
                 ()-> new NullPointerException("교수가 없습니다")
         );
 
+
+
         Student student = new Student(studentDto,s,p);
 
         studentRepository.save(student);
 
+        return student;
     }
 
     // 페이징
     public PagingResult getStudents(int curPage){
+        List<StudentResponseDto> studentResponseDtoList = new LinkedList<>();
         Pageable pageable = PageRequest.of(curPage-1, BLOCK_PAGE_NUM_COUNT);
         Page<Student> students = studentRepository.findAllByOrderByCreatedAtDesc(pageable);
-
         List<Student> studentList = students.getContent();
-        return new PagingResult(studentList, students.getTotalPages());
+
+        for(Student student : studentList){
+            StudentResponseDto studentResponseDto = new StudentResponseDto(student);
+            studentResponseDtoList.add(studentResponseDto);
+        }
+        return new PagingResult(studentResponseDtoList, students.getTotalPages());
+
     }
 
 
@@ -80,5 +92,11 @@ public class StudentService {
 
     }
 
+
+    public Student oneStudent(Long id) {
+        return studentRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("해당 아이디가 존재하지 않습니다")
+        );
+    }
 
 }

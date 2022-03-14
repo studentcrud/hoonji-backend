@@ -2,7 +2,7 @@ package com.example.basiccrud.domain;
 
 
 import com.example.basiccrud.dto.SubjectRequestDto;
-import com.example.basiccrud.utills.SubjectValidator;
+import com.example.basiccrud.utills.validator.SubjectValidator;
 import lombok.*;
 
 import javax.persistence.*;
@@ -23,8 +23,14 @@ public class Subject extends TimeStamped{
     @Column(nullable = false)
     private String subjectName;
 
-    @OneToMany(mappedBy = "subject")
+    @OneToMany(mappedBy = "subject",fetch = FetchType.LAZY)
     List<Professor> professors = new ArrayList<>();
+
+
+    @OneToMany(mappedBy = "subject",fetch = FetchType.LAZY)
+    List<Student> students = new ArrayList<>();
+
+
 
     public Subject(SubjectRequestDto subjectRequestDto){
         this.subjectName = subjectRequestDto.getSubjectName();

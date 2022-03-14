@@ -24,10 +24,6 @@ public class BoardController {
     @PostMapping("/boards")
     public String createBoard(@RequestBody BoardRequestDto boardRequestDto, @AuthenticationPrincipal UserDetailsImpl userDetails) {
         User user = userDetails.getUser();
-        System.out.println(boardRequestDto);
-
-        String g = user.getUsername();
-        System.out.println(g);
         boardService.setBoard(boardRequestDto, user);
         return "ok";
 

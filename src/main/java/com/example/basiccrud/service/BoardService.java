@@ -41,6 +41,7 @@ public class BoardService {
         return new PagingResult(boardList, boards.getTotalPages());
     }
 
+
     // 게시판 수정
     @Transactional
     public String updateBoard(Long id, BoardRequestDto boardRequestDto, User user) {

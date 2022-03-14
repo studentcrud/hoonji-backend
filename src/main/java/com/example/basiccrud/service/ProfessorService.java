@@ -1,6 +1,5 @@
 package com.example.basiccrud.service;
 
-import com.example.basiccrud.domain.Board;
 import com.example.basiccrud.domain.Professor;
 import com.example.basiccrud.domain.Subject;
 import com.example.basiccrud.dto.ProfessorRequestDto;
@@ -16,6 +15,7 @@ import org.springframework.data.domain.Pageable;
 import org.springframework.stereotype.Service;
 
 import javax.transaction.Transactional;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -29,21 +29,31 @@ public class ProfessorService {
 
     //교수 목록 만들기
     @Transactional
-    public void setProfessor(ProfessorRequestDto professorRequestDto) {
+    public Professor setProfessor(ProfessorRequestDto professorRequestDto) {
         Subject sub = subjectRepository.findBySubjectName(professorRequestDto.getSubjectName()).orElseThrow(
                 () -> new NullPointerException("해당 과목이 없습니다")
         );
         Professor professor = new Professor(professorRequestDto, sub);
         professorRepository.save(professor);
+        return professor;
     }
 
 
     //교수 목록 조회 페이징
     public PagingResult getProfessor(int curPage) {
+        List<ProfessorResponseDto> professorResponseDtoList = new LinkedList<>();
         Pageable pageable = PageRequest.of(curPage - 1, BLOCK_PAGE_NUM_COUNT);
         Page<Professor> professors = professorRepository.findAllByOrderByCreatedAtDesc(pageable);
         List<Professor> professorList = professors.getContent();
-        return new PagingResult(professorList, professors.getTotalPages());
+        for(Professor professor : professorList){
+            ProfessorResponseDto professorResponseDto = new ProfessorResponseDto(professor);
+            professorResponseDtoList.add(professorResponseDto);
+        }
+//        }
+
+
+
+        return new PagingResult(professorResponseDtoList, professors.getTotalPages());
     }
 
     // 교수 목록 변경
@@ -73,8 +83,8 @@ public class ProfessorService {
 
     // 교수 전체조회
     public List<ProfessorResponseDto> getPro() {
-//        List<Professor> datas = professorRepository.findAll();
-//
+        List<ProfessorResponseDto> professorResponseDtoList = new LinkedList<>();
+//        List<Professor> professorList = professors.getContent();
 //
 //        for (Professor s : datas) {
 //            System.out.println(s);
@@ -89,6 +99,9 @@ public class ProfessorService {
     }
 
 
-
-
+    public Professor oneProfessor(Long id) {
+        return professorRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("해당 아이디가 존재하지 않습니다.")
+        );
+    }
 }

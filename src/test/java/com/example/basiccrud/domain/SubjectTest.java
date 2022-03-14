@@ -17,7 +17,7 @@ class SubjectTest {
 
     @Nested
     @DisplayName("과목 객체 생성")
-    class CreatTime {
+    class CreateTime {
 
         private String subject1;
 
@@ -29,7 +29,7 @@ class SubjectTest {
 
         @Test
         @DisplayName("정상 케이스")
-        void create_Normal() {
+        void createNormal() {
 
             //given
 

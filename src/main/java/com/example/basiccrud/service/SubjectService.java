@@ -3,6 +3,7 @@ package com.example.basiccrud.service;
 import com.example.basiccrud.domain.Subject;
 import com.example.basiccrud.dto.SubjectRequestDto;
 import com.example.basiccrud.repository.SubjectRepository;
+
 import com.example.basiccrud.utills.PagingResult;
 import com.example.basiccrud.utills.Wrapper;
 import lombok.RequiredArgsConstructor;
@@ -23,11 +24,13 @@ public class SubjectService {
 
     //과목 저장 및 중복 저장 x
     @Transactional
-    public String setSubject(SubjectRequestDto subjectRequestDto){
+    public String setSubject(SubjectRequestDto subjectRequestDto)  {
+
 
         String sub = subjectRequestDto.getSubjectName();
         Optional<Subject> found = subjectRepository.findBySubjectName(sub);
         if(found.isPresent()){
+//           message = "이미있는 학과명 입니다";
             throw new IllegalArgumentException("이미있는 학과명 입니다");
 
         } else {
@@ -35,7 +38,7 @@ public class SubjectService {
             subjectRepository.save(subject);
 
         }
-        return "false";
+        return "fasle";
     }
 
     //과목 조회 페이징
@@ -70,8 +73,11 @@ public class SubjectService {
     }
 
 
-
-
+    public Subject oneSubject(Long id) {
+        return subjectRepository.findById(id).orElseThrow(
+                () -> new NullPointerException("해당 아이디가 존재하지 않습니다.")
+        );
+    }
 
 
 }

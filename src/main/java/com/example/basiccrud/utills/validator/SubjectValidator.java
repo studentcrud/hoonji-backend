@@ -1,4 +1,4 @@
-package com.example.basiccrud.utills;
+package com.example.basiccrud.utills.validator;
 
 public class SubjectValidator {
 

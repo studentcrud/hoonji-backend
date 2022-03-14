@@ -41,7 +41,7 @@ public class UserApiController {
     }
 
     // 유저 아이디 중복체크
-    @PostMapping(value = "/users/check")
+    @GetMapping(value = "/users/check")
     public String checkUser(@RequestBody UserDto userDto){
         return userService.checkUser(userDto);
     }

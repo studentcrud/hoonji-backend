@@ -40,7 +40,13 @@ public class Student extends TimeStamped {
 
 
 
+    public Student(String studentName, int studentAge, String studentAddress){
+        this.studentName = studentName;
+        this.studentAge = studentAge;
+        this.studentAddress = studentAddress;
 
+
+    }
 
     public Student(StudentRequestDto studentDto, Subject s, Professor p){
         this.studentName = studentDto.getStudentName();
@@ -51,6 +57,7 @@ public class Student extends TimeStamped {
 
 
     }
+
 
     public Student update(StudentRequestDto studentRequestDto){
         this.studentName = studentRequestDto.getStudentName();

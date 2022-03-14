@@ -22,4 +22,11 @@ public class ProfessorResponseDto {
         this.professorAge = professorAge;
         this.subjectName = subjectName;
     }
+
+    public ProfessorResponseDto(Professor professor){
+        this.id = professor.getId();
+        this.professorName = professor.getProfessorName();
+        this.professorAge = professor.getProfessorAge();
+        this.subjectName = professor.getSubject().getSubjectName();
+    }
 }

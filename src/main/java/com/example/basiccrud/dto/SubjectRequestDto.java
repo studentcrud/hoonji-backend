@@ -7,10 +7,12 @@ import lombok.Setter;
 
 @Getter
 @Setter
-@NoArgsConstructor
 public class SubjectRequestDto {
 
     private String subjectName;
 
 
+    public SubjectRequestDto(String subjectName) {
+        this.subjectName = subjectName;
+    }
 }

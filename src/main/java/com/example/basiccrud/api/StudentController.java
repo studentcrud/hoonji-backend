@@ -33,9 +33,12 @@ public class StudentController {
     public PagingResult readStudents(@PathVariable Integer curPage){
         return studentService.getStudents(curPage);
 
-
     }
-
+    //학생 개별 조회
+    @GetMapping("/student/{id}")
+    public Student oneStudent(@PathVariable Long id){
+        return studentService.oneStudent(id);
+    }
 
     @RequestMapping(value = "/students",method=RequestMethod.GET)
     public List<Student> readStudents(){
