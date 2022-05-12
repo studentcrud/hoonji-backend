@@ -14,7 +14,7 @@ import javax.persistence.*;
 @NoArgsConstructor
 @Entity
 public class Professor extends TimeStamped {
-
+ 
     @GeneratedValue(strategy = GenerationType.AUTO)
     @Id
     private Long id;
